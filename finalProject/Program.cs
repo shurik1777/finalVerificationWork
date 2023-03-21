@@ -10,39 +10,28 @@
  ["Russia", "Denmark", "Kazan"] -> []
 
  */
- // Формирование массива вводом значений с клавиатуры.
-string[] ReferToArray()
+// Формирование массива вводом значений с клавиатуры.
+string[] CreateAnArray()
 {
     Console.Write("Введите значения через пробел: ");
     return Console.ReadLine()!.Split(" ", StringSplitOptions.RemoveEmptyEntries);
 }
-// Вывод массива на печать.
-string[] arrayOutput = ReferToArray();
-Console.WriteLine($"[{string.Join(", ", arrayOutput)}] -> [{string.Join(", ", SearchingForValues(arrayOutput, 3))}]");
-// Метод с счетчиком строк.
-int NumberOfValues(string[] entry, int k)
+// Вывод массива введенного с клавиатуры и результирующегося на печать.
+string[] arrayOutput = CreateAnArray();
+Console.WriteLine($"[{string.Join(", ", arrayOutput)}] -> [{string.Join(", ", IteratingThroughArray(arrayOutput))}]");
+// Метод перебора длины полученных символов после формирования массива.
+string[] IteratingThroughArray(string[] original)
 {
+    string[] result = new string[original.Length];
     int count = 0;
-    for (int i = 0; i < entry.Length; i++)
+
+    for (int i = 0; i < original.Length; i++)
     {
-        if (entry[i].Length <= k)
+        if (original[i].Length <= 3)
         {
+            result[count] = original[i];
             count++;
         }
     }
-    return count;
-}
-// Метод прохода значений в массиве.
-string[] SearchingForValues(string[] entry, int k)
-{
-    string[] exit = new string[NumberOfValues(entry, k)];
-    for (int i = 0, j = 0; i < entry.Length; i++)
-    {
-        if (entry[i].Length <= k)
-        {
-            exit[j] = entry[i];
-            j++;
-        }
-    }
-    return exit;
+    return result;
 }
