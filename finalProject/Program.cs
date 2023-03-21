@@ -18,4 +18,31 @@ string[] ReferToArray()
 }
 // Вывод массива на печать.
 string[] arrayOutput = ReferToArray();
-Console.WriteLine($"[{string.Join(", ", arrayOutput)}] -> [{string.Join(", ", (arrayOutput, 3))}]");
+Console.WriteLine($"[{string.Join(", ", arrayOutput)}] -> [{string.Join(", ", SearchingForValues(arrayOutput, 3))}]");
+// Метод с счетчиком строк.
+int NumberOfValues(string[] entry, int k)
+{
+    int count = 0;
+    for (int i = 0; i < entry.Length; i++)
+    {
+        if (entry[i].Length <= k)
+        {
+            count++;
+        }
+    }
+    return count;
+}
+// Метод прохода значений в массиве.
+string[] SearchingForValues(string[] entry, int k)
+{
+    string[] exit = new string[NumberOfValues(entry, k)];
+    for (int i = 0, j = 0; i < entry.Length; i++)
+    {
+        if (entry[i].Length <= k)
+        {
+            exit[j] = entry[i];
+            j++;
+        }
+    }
+    return exit;
+}
