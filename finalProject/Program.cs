@@ -10,4 +10,12 @@
  ["Russia", "Denmark", "Kazan"] -> []
 
  */
- 
+ // Формирование массива вводом значений с клавиатуры.
+string[] ReferToArray()
+{
+    Console.Write("Введите значения через пробел: ");
+    return Console.ReadLine()!.Split(" ", StringSplitOptions.RemoveEmptyEntries);
+}
+// Вывод массива на печать.
+string[] arrayOutput = ReferToArray();
+Console.WriteLine($"[{string.Join(", ", arrayOutput)}] -> [{string.Join(", ", (arrayOutput, 3))}]");
