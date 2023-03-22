@@ -10,28 +10,31 @@
  ["Russia", "Denmark", "Kazan"] -> []
 
  */
-// Формирование массива вводом значений с клавиатуры.
+// Создания массива строк из ввода с клавиатуры.
 string[] CreateAnArray()
 {
     Console.Write("Введите значения через пробел: ");
     return Console.ReadLine()!.Split(" ", StringSplitOptions.RemoveEmptyEntries);
 }
-// Вывод массива введенного с клавиатуры и результирующегося на печать.
+// Вывод на печать имеющегося массива и сформированого массива из строк, длина которого <= 3 символа.
 string[] arrayOutput = CreateAnArray();
-Console.WriteLine($"[{string.Join(", ", arrayOutput)}] -> [{string.Join(", ", IteratingThroughArray(arrayOutput))}]");
+Console.WriteLine($"[{string.Join(", ", arrayOutput)}] -> [{string.Join(", ", IfStringOfArray(arrayOutput))}]");
 // Метод перебора длины полученных символов после формирования массива.
-string[] IteratingThroughArray(string[] original)
+string[] IfStringOfArray(string[] arrayString)
 {
-    string[] result = new string[original.Length];
-    int count = 0;
-
-    for (int i = 0; i < original.Length; i++)
+    string[] tempArray = new string[arrayString.Length];
+    int j = 0;
+    for (int i = 0; i < arrayString.Length; i++)
     {
-        if (original[i].Length <= 3)
+        if (arrayString[i].Length <= 3)
         {
-            result[count] = original[i];
-            count++;
+            tempArray[j] = arrayString[i];
+            j++;
         }
     }
-    return result;
+    string[] resultArray = new string[j];
+
+    for (int i = 0; i < j; i++)
+        resultArray[i] = tempArray[i];
+    return resultArray;
 }
